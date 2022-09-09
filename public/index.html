@@ -449,29 +449,29 @@
             <div class="row justify-content-center">
               <div class="col-lg-8 col-md-10">
                 <h2 class="text-secondary lh-1-7 mb-7">Liked our product? Please share your feedbacks with us to help us improve our product. Fill out the form and we will take a look at your suggestions and feedbacks.</h2>
-                <form class="row g-3 align-items-center w-lg-75 mx-auto">
+                <form class="row g-3 align-items-center w-lg-75 mx-auto" onsubmit="sendemail(); reset(); return false;">
                   <div class="col-m">
                     <div class="input-group-icon">
-                      <input class="form-control form-little-squirrel-control" type="text" placeholder="Enter your full name " aria-label="name" required/><img class="input-box-icon" src="https://firebasestorage.googleapis.com/v0/b/legflex-3bb1f.appspot.com/o/user.png?alt=media" width="17" alt="name, LegFlex"/>
+                      <input class="form-control form-little-squirrel-control" type="text" id="name1" placeholder="Enter your full name " aria-label="name" required/><img class="input-box-icon" src="https://firebasestorage.googleapis.com/v0/b/legflex-3bb1f.appspot.com/o/user.png?alt=media" width="17" alt="name, LegFlex"/>
                     </div>
                   </div>
                   <div class="col-m">
                     <div class="input-group-icon">
-                      <input class="form-control form-little-squirrel-control" type="tel" placeholder="Enter your phone number " aria-label="phone" required/><img class="input-box-icon" src="https://firebasestorage.googleapis.com/v0/b/legflex-3bb1f.appspot.com/o/phone.png?alt=media" width="17" alt="phone, LegFlex"/>
+                      <input class="form-control form-little-squirrel-control" type="tel" id="phone1" placeholder="Enter your phone number " aria-label="phone" required/><img class="input-box-icon" src="https://firebasestorage.googleapis.com/v0/b/legflex-3bb1f.appspot.com/o/phone.png?alt=media" width="17" alt="phone, LegFlex"/>
                     </div>
                   </div>
                   <div class="col-m">
                     <div class="input-group-icon">
-                      <input class="form-control form-little-squirrel-control" type="email" placeholder="Enter email " aria-label="email" required/><img class="input-box-icon" src="https://firebasestorage.googleapis.com/v0/b/legflex-3bb1f.appspot.com/o/mail.svg?alt=media" width="17" alt="mail" />
+                      <input class="form-control form-little-squirrel-control" type="email" id="emailid1" placeholder="Enter email " aria-label="email" required/><img class="input-box-icon" src="https://firebasestorage.googleapis.com/v0/b/legflex-3bb1f.appspot.com/o/mail.svg?alt=media" width="17" alt="mail" />
                     </div>
                   </div>
                   <div class="col-m">
                     <div class="input-group-icon">
-                      <textarea class="form-control form-little-squirrel-control" type="text" placeholder="Enter your message " aria-label="email" rows="7" required></textarea>
+                      <textarea class="form-control form-little-squirrel-control" type="text" id="message1" placeholder="Enter your message " aria-label="email" rows="7" required></textarea>
                     </div>
                   </div>
                   <div class="col-sm-auto">
-                    <button class="btn btn-danger orange-gradient-btn fs--1">Submit</button>
+                    <button type="submit" class="btn btn-danger orange-gradient-btn fs--1">Submit</button>
                   </div>
                 </form>
               </div>
@@ -582,6 +582,32 @@
         }
 // When the user clicks on the button, scroll to the top of the document
     </script>
+
+    <!-- Email code start-->
+    <script src="https://smtpjs.com/v3/smtp.js"></script>
+    <script>
+    	function sendemail(){
+        let name2 = document.getElementById("name1").value;
+        let phone2 = document.getElementById("phone1").value;
+        let emailid2 = document.getElementById("emailid1").value;
+        let message2 = document.getElementById("message1").value;
+    	Email.send({
+        SecureToken : "9be2b0f0-6e49-49dd-a82a-edbb0317fcac",
+		    // Host : "smtp.elasticemail.com",
+		    // Username : "legflex22@gmail.com",
+		    // Password : "D561B3A71D7683FFE4C66958EC01FE52A24B",
+		    To : 'legflex22@gmail.com',
+		    From : 'legflex22@gmail.com',
+		    Subject : "Enquiry Request from "+name2,
+		    Body : "<strong>Name: </strong>"+name2 + "<br> <strong>Phone Number: </strong>"+phone2 + 
+        "<br> <strong>Email ID: </strong>"+emailid2 + "<br> <strong>Message: </strong>"+message2, 
+		}).then(
+		  message => alert("Message send successfully.")
+		);
+	}
+    </script>
+ <!-- Email code end-->
+
     <script src="vendors/@popperjs/popper.min.js"></script>
     <script src="vendors/bootstrap/bootstrap.min.js"></script>
     <script src="vendors/is/is.min.js"></script>
@@ -593,17 +619,3 @@
   </body>
 
 </html>
-
-
-
-
-
-
-
-
-
-
-
-
-
-        
